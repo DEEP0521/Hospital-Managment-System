@@ -2,7 +2,7 @@ package com.jkt.training.service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collector;
+//import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -31,7 +31,7 @@ public class DoctorService {
 		return doctorrepo.findAll();
 	}
 	
-	public Optional getdoctor(int d_id)
+	public Optional<Doctor> getdoctor(int d_id)
 	{
 		return doctorrepo.findById(d_id);
 		

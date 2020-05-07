@@ -29,7 +29,7 @@ public class HospitalController {
 		return hrservice.getById(hosp_id);
 	}
 	
-	@PostMapping(path="/hospitals",consumes="application/json")
+	@PostMapping(path="/hospitals")
 	public String addHospital(@RequestBody Hospital hospital)
 	{
 		hrservice.addHospital(hospital);
@@ -43,7 +43,7 @@ public class HospitalController {
 		return "The hospital with id "+ hosp_id +"is deleted.";
 	}
 	
-	@PutMapping(path = "/hospitals/{hosp_id}",consumes = "application/json")
+	@PutMapping(path = "/hospitals/{hosp_id}")
 	public String updateHospital(@RequestBody Hospital hospital,@PathVariable int hosp_id) {
 		hrservice.updateHospital(hospital, hosp_id);
 		return "Hospital is updated now.";

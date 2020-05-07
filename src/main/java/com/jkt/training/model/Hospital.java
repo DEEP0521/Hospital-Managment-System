@@ -27,8 +27,8 @@ public class Hospital {
 		this.Hosp_id=hosp_id;
 		this.HBranchName=HBranchName;
 		this.HCity=HCity;	
-		this.doctor=doctor;
-		this.patient=patient;
+		this.doctor=new Doctor(d_id);
+		this.patient=new Patient(pid);
  }
  public Hospital(int hosp_id, String HBranchName, String HCity)
  {

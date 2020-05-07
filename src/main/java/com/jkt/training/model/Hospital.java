@@ -11,41 +11,55 @@ import javax.persistence.Id;
 public class Hospital {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
- private int Hosp_id;
- private String HName;
- private String HAddress;
+ private int hosp_id;
+ private String HBranchName;
+ private String HCity;
+ private Doctor doctor;
+ private Patient patient;
+ public Hospital()
+ {
+	 super();
+ }
  
- public Hospital(int hosp_id, String haddress, String hname)
-    {
-		Hosp_id=hosp_id;
-		HAddress=haddress;
-		HName=hname;
-	
-    }
+ public Hospital(int hosp_id, String HBranchName, String HCity,Doctor doctor,Patient patient)
+ {
+	 super();
+		this.Hosp_id=hosp_id;
+		this.HBranchName=HBranchName;
+		this.HCity=HCity;	
+		this.doctor=doctor;
+		this.patient=patient;
+ }
+ public Hospital(int hosp_id, String HBranchName, String HCity)
+ {
+	 super();
+		this.Hosp_id=hosp_id;
+		this.HBranchName=HBranchName;
+		this.HCity=HCity;	
+ }
 
+public int getHosp_id() {
+	return hosp_id;
+}
+public void setHosp_id(int hosp_id) {
+	this.hosp_id = hosp_id;
+}
+public String getHName() {
+	return HName;
+}
+public void setHName(String hName) {
+	HName = hName;
+}
+public String getHAddress() {
+	return HAddress;
+}
+public void setHAddress(String hAddress) {
+	HAddress = hAddress;
+}
+@Override
+public String toString() {
+	return "Hospital [hosp_id=" + hosp_id + ", HName=" + HName + ", HAddress=" + HAddress
+			+ "]";
+}
  
- public int getHosp_id() {
-		return Hosp_id;
-	}
-
-	public void setHosp_id(int hosp_id) {
-		Hosp_id = hosp_id;
-	}
-
-	public String getHAddress() {
-		return HAddress;
-	}
-
-	public void setHAddress(String hAddress) {
-		HAddress = hAddress;
-	}
-
-	public String getHName() {
-		return HName;
-	}
-
-	public void setHName(String hName) {
-		HName = hName;
-	}
-	
 }

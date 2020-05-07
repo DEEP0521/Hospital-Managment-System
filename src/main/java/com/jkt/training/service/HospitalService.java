@@ -1,5 +1,5 @@
-package com.jkt.training.service;
-
-public class HospitalService {
-
-}
+//package com.jkt.training.service;
+//
+//public class HospitalService {
+//
+//}

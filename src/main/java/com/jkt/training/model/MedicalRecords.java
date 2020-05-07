@@ -10,7 +10,7 @@ public class MedicalRecords {
 	private int r_id;
 	private String problem;
 	private String date_of_examination;
-	private Patient patient;
+	//private Patient patient;
 	
 	public MedicalRecords() {
 		super();
@@ -24,13 +24,13 @@ public class MedicalRecords {
 		this.date_of_examination = date_of_examination;
 	}
 
-	public MedicalRecords(int r_id, String problem, String date_of_examination, Patient patient) {
-		super();
-		this.r_id = r_id;
-		this.problem = problem;
-		this.date_of_examination = date_of_examination;
-		this.patient = patient;
-	}
+//	public MedicalRecords(int r_id, String problem, String date_of_examination, Patient patient) {
+//		super();
+//		this.r_id = r_id;
+//		this.problem = problem;
+//		this.date_of_examination = date_of_examination;
+//		this.patient = patient;
+//	}
 
 	public int getR_id() {
 		return r_id;
@@ -56,13 +56,13 @@ public class MedicalRecords {
 		this.date_of_examination = date_of_examination;
 	}
 
-	public Patient getPatient() {
-		return patient;
-	}
-
-	public void setPatient(Patient patient) {
-		this.patient = patient;
-	}
+//	public Patient getPatient() {
+//		return patient;
+//	}
+//
+//	public void setPatient(Patient patient) {
+//		this.patient = patient;
+//	}
 
 	@Override
 	public String toString() {

@@ -44,7 +44,6 @@ public class MedicalRecordsService {
 	}
 	
 	public void updateRecord(MedicalRecords record,int r_id) {
-		record=repository.getOne(r_id);
 		repository.save(record);
 	}
 }

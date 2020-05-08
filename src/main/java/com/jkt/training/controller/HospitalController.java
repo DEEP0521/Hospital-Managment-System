@@ -1,6 +1,5 @@
-//package com.jkt.training.controller;
-//
-//public class HospitalController {
-//
-//}
-////
+package com.jkt.training.controller;
+
+public class HospitalController {
+
+}

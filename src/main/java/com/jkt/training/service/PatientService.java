@@ -48,6 +48,7 @@ public class PatientService {
 		Prepo.deleteById(Pid);  //For CrudRepository
 	}
 	
+	//--Update Record
 	public void updatePatient(Patient pt,Integer Pid) {
 //		pt=Prepo.getOne(Pid);  //For JpaRepository
 		pt=Prepo.findById(Pid).get();  //For CrudRepository

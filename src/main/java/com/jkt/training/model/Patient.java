@@ -1,46 +1,56 @@
 package com.jkt.training.model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-//import javax.persistence.GenerationType;
+//import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Patient {
 
 	@Id
-	@GeneratedValue
-	private int Pid;
-	private String Pname,Pdiagnosis,Paddress;
-	//private MedicalRecords records;
-	//private Hospital hospital;
+	private int id;
+	private String p_name,p_diagnosis,p_address;
 	
-	public Patient() {	}
-
-
-public Patient(int pid, String pname, String pdiagnosis, String paddress) {
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getP_name() {
+		return p_name;
+	}
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
+	}
+	public String getP_diagnosis() {
+		return p_diagnosis;
+	}
+	public void setP_diagnosis(String p_diagnosis) {
+		this.p_diagnosis = p_diagnosis;
+	}
+	public String getP_address() {
+		return p_address;
+	}
+	public void setP_address(String p_address) {
+		this.p_address = p_address;
+	}
+	public Patient(int id, String p_name, String p_diagnosis, String p_address) {
 		super();
-		Pid = pid;
-		Pname = pname;
-		Pdiagnosis = pdiagnosis;
-		Paddress = paddress;
+		this.id = id;
+		this.p_name = p_name;
+		this.p_diagnosis = p_diagnosis;
+		this.p_address = p_address;
 	}
-
-//Getters
-	public int getPid() {
-		return Pid;
+	public Patient() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
-
-	public String getPname() {
-		return Pname;
-	}
-
-	public String getPdiagnosis() {
-		return Pdiagnosis;
-	}
-
-	public String getPaddress() {
-		return Paddress;
+	@Override
+	public String toString() {
+		return "Patient [id=" + id + ", p_name=" + p_name + ", p_diagnosis=" + p_diagnosis + ", p_address=" + p_address
+				+ "]";
 	}
 	
+
 }

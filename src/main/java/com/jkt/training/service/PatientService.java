@@ -44,13 +44,10 @@ public class PatientService {
 	
 	//--Deletes Record
 	public void deletePatient(int Pid) {
-//		Patient pt=Prepo.getOne(Pid); //For JpaRepository
 		Prepo.deleteById(Pid);  //For CrudRepository
 	}
 	
 	public void updatePatient(Patient pt,Integer Pid) {
-//		pt=Prepo.getOne(Pid);  //For JpaRepository
-		pt=Prepo.findById(Pid).get();  //For CrudRepository
 		Prepo.save(pt);
 	}
 }

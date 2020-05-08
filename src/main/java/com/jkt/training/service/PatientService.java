@@ -2,6 +2,10 @@ package com.jkt.training.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,17 +19,35 @@ public class PatientService {
 	@Autowired
 	private PatientRepository Prepo;
 	
+	@PostConstruct
+	public void SetRecords() {
+		Prepo.saveAll(Stream.of(new Patient(112,"Peter Smith","Heah Ache","UK"),
+				new Patient(113,"Katie Taylor","Back Pain","London")).collect(Collectors.toList()));
+	}
+	
+	//Presents All records
 	public List<Patient> listAll(){ 
 		final List<Patient> patient=new ArrayList<>();
 		Prepo.findAll().forEach(pt->patient.add(pt));
 		return patient;
 	}
 	
+	//Presents records by specified id
 	public Patient get(Integer Pid) {
 		return Prepo.findById(Pid).get();
 	}
 	
-	public void save(final Patient pt) {
+	
+	public void addrecord(Patient pt) {
 		Prepo.save(pt);
+	}
+	
+	public void delete(Integer Pid) {
+		Patient pt=Prepo.
+		Prepo.deleteById(Pid);
+	}
+	
+	public void update(Patient pt,Integer Pid) {
+		
 	}
 }

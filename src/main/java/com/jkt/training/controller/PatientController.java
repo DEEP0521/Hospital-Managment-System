@@ -22,17 +22,15 @@ public class PatientController {
 	@Autowired
 	private PatientService Pservice;
 	
-	
-	//working
-	@GetMapping("/patients") //provides list of all patients
+	//--provides list of all patients
+	@GetMapping("/patients") 
 	public List<Patient> list(){
 		return Pservice.listAll();
 	}
 	
-	
-	//working
-	@GetMapping("/patients/{Pid}") //provides the details of selected patient
-	public ResponseEntity<Patient> get(@PathVariable Integer Pid){
+	//--provides the details of selected patient
+	@GetMapping("/patients/{Pid}") 
+	public ResponseEntity<Patient> PatientId(@PathVariable Integer Pid){
 		try {
 			Patient pt=Pservice.get(Pid);
 			return new ResponseEntity<Patient>(pt,HttpStatus.OK);
@@ -41,18 +39,23 @@ public class PatientController {
 		}
 	}
 	
-	@PostMapping(path = "/precord",consumes = "application/json")
-	public void save(@RequestBody Patient pt) {
+	//--Adds Patient Records
+	@PostMapping(path = "/precord",consumes = "application/json") 
+	public String addPatient(@RequestBody Patient pt) {
 		Pservice.addrecord(pt);
+		return "Patient Record Added!";
 	}
 	
-	@DeleteMapping(path = "/pdelete/{Pid}")
-	public void deleteP(@PathVariable int Pid) {
-		Pservice.delete(Pid);
+	//--Deletes Patient's Record by ID
+	@DeleteMapping(path = "/pdelete/{Pid}") 
+	public String delPatient(@PathVariable int Pid) {
+		Pservice.deletePatient(Pid);
+		return "Patient Record deleted!";
 	}
 	
 	@PutMapping(path = "/pupdate/{Pid}",consumes = "application/json")
-	public void updateP(@RequestBody Patient pt,@PathVariable int Pid) {
-		Pservice.update(pt,Pid);
+	public String updPatient(@RequestBody Patient pt,@PathVariable int Pid) {
+		Pservice.updatePatient(pt, Pid);
+		return "Patient Record Updated!";
 	}
 }

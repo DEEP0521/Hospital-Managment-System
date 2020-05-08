@@ -1,5 +1,5 @@
-//package com.jkt.training.model;
-//
-//public class MedicalRecords {
-//
-//}
+package com.jkt.training.model;
+
+public class MedicalRecords {
+
+}

@@ -1,14 +1,14 @@
 package com.jkt.training.model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
+//import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Patient {
 
 	@Id
-	@GeneratedValue
+//	@GeneratedValue
 	private int Pid;
 	private String Pname,Pdiagnosis,Paddress;
 	

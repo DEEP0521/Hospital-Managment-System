@@ -25,29 +25,32 @@ public class PatientService {
 				new Patient(113,"Katie Taylor","Back Pain","London")).collect(Collectors.toList()));
 	}
 	
-	//Presents All records
+	//--Presents All records
 	public List<Patient> listAll(){ 
 		final List<Patient> patient=new ArrayList<>();
 		Prepo.findAll().forEach(pt->patient.add(pt));
 		return patient;
 	}
 	
-	//Presents records by specified id
+	//--Presents record by specified id
 	public Patient get(Integer Pid) {
 		return Prepo.findById(Pid).get();
 	}
 	
-	
+	//--Adds new Patient Record
 	public void addrecord(Patient pt) {
 		Prepo.save(pt);
 	}
 	
-	public void delete(Integer Pid) {
-		Patient pt=Prepo.
-		Prepo.deleteById(Pid);
+	//--Deletes Record
+	public void deletePatient(int Pid) {
+//		Patient pt=Prepo.getOne(Pid); //For JpaRepository
+		Prepo.deleteById(Pid);  //For CrudRepository
 	}
 	
-	public void update(Patient pt,Integer Pid) {
-		
+	public void updatePatient(Patient pt,Integer Pid) {
+//		pt=Prepo.getOne(Pid);  //For JpaRepository
+		pt=Prepo.findById(Pid).get();  //For CrudRepository
+		Prepo.save(pt);
 	}
 }

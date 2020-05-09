@@ -18,12 +18,6 @@ public class PatientService {
 	@Autowired
 	private PatientRepository repository;
 	
-//	@PostConstruct
-//	public void Setpatients() {
-//		repository.saveAll(Stream.of(new Patient(112,"Peter Smith","Heah Ache","UK"),
-//				new Patient(113,"Katie Taylor","Back Pain","London")).collect(Collectors.toList()));
-//	}
-	
 	@PostConstruct
 	public void initPatients() {
 		repository.saveAll(new ArrayList<Patient>(Arrays.asList(new Patient(113,"Katie Taylor","Back Pain","London"),

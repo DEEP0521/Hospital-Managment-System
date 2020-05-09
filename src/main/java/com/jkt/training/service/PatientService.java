@@ -1,10 +1,9 @@
 package com.jkt.training.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
+import java.util.Optional;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,38 +16,68 @@ import com.jkt.training.repository.PatientRepository;
 public class PatientService {
 
 	@Autowired
-	private PatientRepository Prepo;
+	private PatientRepository repository;
+	
+//	@PostConstruct
+//	public void Setpatients() {
+//		repository.saveAll(Stream.of(new Patient(112,"Peter Smith","Heah Ache","UK"),
+//				new Patient(113,"Katie Taylor","Back Pain","London")).collect(Collectors.toList()));
+//	}
 	
 	@PostConstruct
-	public void SetRecords() {
-		Prepo.saveAll(Stream.of(new Patient(112,"Peter Smith","Heah Ache","UK"),
-				new Patient(113,"Katie Taylor","Back Pain","London")).collect(Collectors.toList()));
+	public void initPatients() {
+		repository.saveAll(new ArrayList<Patient>(Arrays.asList(new Patient(113,"Katie Taylor","Back Pain","London"),
+															   new Patient(111,"Katie singh","Flu","UAE"),
+															   new Patient(112,"Peter Smith","Heah Ache","UK"))));
+	}
+	//mapping
+	public List<Patient> getAllH_Patients(int p_id){
+		List<Patient> patients=new ArrayList<Patient>();
+		repository.findByHospitalId(p_id)
+		.forEach(patients::add);
+		return patients;
 	}
 	
-	//--Presents All records
-	public List<Patient> listAll(){ 
-		final List<Patient> patient=new ArrayList<>();
-		Prepo.findAll().forEach(pt->patient.add(pt));
-		return patient;
+	public List<Patient> getAllpatients(){
+		return repository.findAll(); 
 	}
 	
-	//--Presents record by specified id
-	public Patient get(Integer p_id) {
-		return Prepo.findById(p_id).get();
+	//mapping
+	public Optional<Patient> getH_PatientById(int p_id) {
+		return repository.findById(p_id);
 	}
 	
-	//--Adds new Patient Record
-	public void addrecord(Patient pt) {
-		Prepo.save(pt);
+	public Optional<Patient> getPatientById(int p_id) {
+		return repository.findById(p_id);
 	}
 	
-	//--Deletes Record
+	public void addPatient(Patient patient) {
+		 repository.save(patient);
+	}
+	
+	//mapping
+	public void addH_Patient(Patient patient) {
+		 repository.save(patient);
+	}
+	
 	public void deletePatient(int p_id) {
-		Prepo.deleteById(p_id);  //For CrudRepository
+		Patient patient=repository.getOne(p_id);
+		repository.delete(patient);
 	}
 	
-	//--Update Record
-	public void updatePatient(Patient pt,Integer p_id) {
-		Prepo.save(pt);
+	//mapping
+	public void deleteH_Patient(int p_id) {
+		Patient patient=repository.getOne(p_id);
+		repository.delete(patient);
 	}
+	
+	public void updatePatient(Patient patient,int p_id) {
+		repository.save(patient);
+	}
+	
+	//mapping
+	public void updateH_Patient(Patient patient) {
+		repository.save(patient);
+	}
+
 }

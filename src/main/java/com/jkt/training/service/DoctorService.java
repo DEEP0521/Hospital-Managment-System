@@ -21,11 +21,11 @@ public class DoctorService {
 	@Autowired
 	DoctorRepository doctorrepo;
 	
-//	@PostConstruct
-//	public void initdoctors()
-//	{
-//		doctorrepo.saveAll(Stream.of(new Doctor(101,"DR Awasthi","MBBS",50000),new Doctor(102,"DR Kabir","BDS",40000)).collect(Collectors.toList()));
-//	}
+	@PostConstruct
+	public void initdoctors()
+	{
+		doctorrepo.saveAll(Stream.of(new Doctor(101,"DR Awasthi","MBBS",50000),new Doctor(102,"DR Kabir","BDS",40000)).collect(Collectors.toList()));
+	}
 	
 	//doctor-hospital mapping
 	public List<Doctor> getAllDoctorsRec(int hosp_id)

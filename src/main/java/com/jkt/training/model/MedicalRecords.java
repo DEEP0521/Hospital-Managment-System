@@ -8,7 +8,7 @@ import javax.persistence.ManyToOne;
 public class MedicalRecords {
 	
 	@Id
-	private int r_id;
+	private int id;
 	private String problem;
 	private String date_of_examination;
 	
@@ -20,27 +20,27 @@ public class MedicalRecords {
 		// TODO Auto-generated constructor stub
 	}
 
-	public MedicalRecords(int r_id, String problem, String date_of_examination) {
+	public MedicalRecords(int id, String problem, String date_of_examination) {
 		super();
-		this.r_id = r_id;
+		this.id = id;
 		this.problem = problem;
 		this.date_of_examination = date_of_examination;
 	}
 
-	public MedicalRecords(int r_id, String problem, String date_of_examination, int p_id) {
+	public MedicalRecords(int id, String problem, String date_of_examination, int p_id) {
 		super();
-		this.r_id = r_id;
+		this.id = id;
 		this.problem = problem;
 		this.date_of_examination = date_of_examination;
 		this.patient = new Patient(p_id,"","","");
 	}
 
-	public int getR_id() {
-		return r_id;
+	public int getId() {
+		return id;
 	}
 
-	public void setR_id(int r_id) {
-		this.r_id = r_id;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getProblem() {
@@ -69,7 +69,7 @@ public class MedicalRecords {
 
 	@Override
 	public String toString() {
-		return "MedicalRecords [r_id=" + r_id + ", problem=" + problem + ", date_of_examination=" + date_of_examination
+		return "MedicalRecords [id=" + id + ", problem=" + problem + ", date_of_examination=" + date_of_examination
 				+ "]";
 	}
 	

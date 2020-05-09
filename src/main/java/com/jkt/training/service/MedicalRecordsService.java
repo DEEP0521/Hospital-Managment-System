@@ -1,14 +1,17 @@
 package com.jkt.training.service;
 
 import java.util.ArrayList;
-
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+
+import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jkt.training.model.MedicalRecords;
+
 import com.jkt.training.repository.MedicalRecordsRepository;
 
 @Service
@@ -16,13 +19,12 @@ public class MedicalRecordsService {
 
 	@Autowired
 	private MedicalRecordsRepository repository;
-	
-//	@PostConstruct
-//	public void initRecords() {
-//		repository.saveAll(new ArrayList<MedicalRecords>(Arrays.asList(new MedicalRecords(1001,"Heart","11/07/2018"),
-//															   new MedicalRecords(1002,"Eye Flu","17/12/2019"),
-//															   new MedicalRecords(1003,"Liver","02/03/2019"))));
-//	}
+	@PostConstruct
+	public void initRecords() {
+		repository.saveAll(new ArrayList<MedicalRecords>(Arrays.asList(new MedicalRecords(1001,"Heart","11/07/2018"),
+															   new MedicalRecords(1002,"Eye Flu","17/12/2019"),
+															   new MedicalRecords(1003,"Liver","02/03/2019"))));
+	}
 	
 	//mapping
 	public List<MedicalRecords> getAllp_Records(int p_id){

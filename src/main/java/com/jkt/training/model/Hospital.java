@@ -11,22 +11,22 @@ public class Hospital {
  private int hosp_id;
  private String HBranchName;
  private String HCity;
+	@OneToMany
  private Doctor doctor;
- private Patient patient;
+// private Patient patient;
  public Hospital()
  {
 	 super();
  }
  
- public Hospital(int hosp_id, String HBranchName, String HCity,Doctor doctor,Patient patient)
- {
+ public Hospital(int hosp_id, String HBranchName, String HCity,int d_id)
+	{
 	 super();
-		this.Hosp_id=hosp_id;
+		this.hosp_id=hosp_id;
 		this.HBranchName=HBranchName;
 		this.HCity=HCity;	
-		this.doctor=doctor;
-		this.patient=patient;
- }
+		this.doctor=new Doctor(d_id,"","",0);
+	}
  public Hospital(int hosp_id, String HBranchName, String HCity)
  {
 	 super();
@@ -61,13 +61,13 @@ public void setDoctor(Doctor doctor) {
 	this.doctor = doctor;
 }
 
-public Patient getPatient() {
+/*public Patient getPatient() {
 	return patient;
 }
 
 public void setPatient(Patient patient) {
 	this.patient = patient;
-}
+}*/
 @Override
 public String toString() {
 	return "Hospital [hosp_id=" + hosp_id + ", HName=" + HName + ", HAddress=" + HAddress

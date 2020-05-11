@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.jkt.training.model.Patient;
+import com.jkt.training.model.*;
 
 @Repository
 public interface PatientRepository extends JpaRepository<Patient, Integer> {

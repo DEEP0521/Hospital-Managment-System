@@ -22,43 +22,53 @@ public class PatientController {
 	@Autowired
 	private PatientService service;
 	
+	//Patient records with exception handling
 	@GetMapping("/patients")
 	public List<Patient> getAllpatients(){
 		
 		return service.getAllpatients();
 	}
 	
-	//mapping with medical patient
+	//mapping with patient with exception handling
 	@GetMapping("/hospitals/{h_id}/patients")
 	public List<Patient> getAllH_Patients(@PathVariable int h_id){
 		
 		return service.getAllH_Patients(h_id);
 	}
-	
+		
+	//Patient records using id with exception handling
 	@GetMapping("/patients/{p_id}")
 	public Optional<Patient> getPatientById(@PathVariable int p_id) {
 		return service.getPatientById(p_id);
 	}
 	
-	//mapping with medical patient
+	//mapping with patient
 	@GetMapping("/hospitals/{h_id}/patients/{p_id}")
 	public Optional<Patient> getH_PatientById(@PathVariable int p_id) {
 		return service.getH_PatientById(p_id);
 	}
 	
+	
 	@PostMapping(path = "/patients",consumes = "application/json")
 	public String addPatient(@RequestBody Patient patient) {
-		service.addPatient(patient);
-		return "added";
+		boolean b=service.addPatient(patient);
+		if(b==true)
+			return "Patient Record Added!";
+		else
+			return "Unsucessful record addition!";
 	}
 	
-	//mapping with medical patient
+	//mapping with patient
 	@PostMapping(path = "/hospitals/{h_id}/patients",consumes = "application/json")
 	public String addp_patient(@PathVariable int h_id,@RequestBody Patient patient) {
 		patient.setHospital(new Hospital(h_id,"",""));
-		service.addH_Patient(patient);
-		return "added H_patient";
+		boolean b=service.addH_Patient(patient);
+		if(b==true)
+			return "Patient Record Added";
+		else
+			return "Unsucessful record addition!";
 	}
+	
 	
 	@PutMapping(path = "/patients/{p_id}",consumes = "application/json")
 	public String updatePatient(@RequestBody Patient patient,@PathVariable int p_id) {
@@ -66,13 +76,16 @@ public class PatientController {
 		return "updated";
 	}
 	
-	//mapping with medical patient
+	//mapping with patient
 	@PutMapping(path = "/hospitals/{h_id}/patients/{p_id}",consumes = "application/json")
 	public String updatep_patient(@RequestBody Patient patient,@PathVariable int p_id,@PathVariable int h_id) {
 		patient.setHospital(new Hospital(h_id,"",""));
-		service.updateH_Patient(patient);
+		boolean b=service.updateH_Patient(patient);
 		return "updated p_patient";
 	}
+	
+	//mapping with medical records
+	
 	
 	@DeleteMapping("/patients/{p_id}")
 	public String deletePatient(@PathVariable int p_id) {
@@ -80,10 +93,11 @@ public class PatientController {
 		return "deleted";
 	}
 	
-	//mapping with medical patient
+	//mapping with patient
 	@DeleteMapping("/hospitals/{h_id}/patients/{p_id}")
 	public String deletep_patient(@PathVariable int p_id) {
 		service.deleteH_Patient(p_id);
 		return "deleted";
 	}
+	
 }

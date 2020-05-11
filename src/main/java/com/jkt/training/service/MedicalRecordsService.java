@@ -29,7 +29,7 @@ public class MedicalRecordsService {
 	//mapping
 	public List<MedicalRecords> getAllp_Records(int p_id){
 		List<MedicalRecords> records=new ArrayList<MedicalRecords>();
-		repository.findByPatientId(p_id)
+		repository.findByPatientPid(p_id)
 		.forEach(records::add);
 		return records;
 	}

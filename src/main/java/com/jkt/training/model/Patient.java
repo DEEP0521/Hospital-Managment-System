@@ -1,7 +1,6 @@
 package com.jkt.training.model;
 
 import javax.persistence.Entity;
-//import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
@@ -9,32 +8,44 @@ import javax.persistence.ManyToOne;
 public class Patient {
 
 	@Id
-	private int id;
+	private int pid;
 	private String p_name,p_diagnosis,p_address;
 	
 	@ManyToOne
 	private Hospital hospital;
 	
-	
-	public Patient(int id, String p_name, String p_diagnosis, String p_address, int h_id) {
+	public Patient() {
 		super();
-		this.id = id;
+	}
+	
+	public Patient(int pid, String p_name, String p_diagnosis, String p_address, int h_pid) {
+		super();
+		this.pid = pid;
 		this.p_name = p_name;
 		this.p_diagnosis = p_diagnosis;
 		this.p_address = p_address;
-		this.hospital = new Hospital(h_id,"","");
+		this.hospital = new Hospital(h_pid,"","");
 	}
+	public Patient(int pid, String p_name, String p_diagnosis, String p_address) {
+		super();
+		this.pid = pid;
+		this.p_name = p_name;
+		this.p_diagnosis = p_diagnosis;
+		this.p_address = p_address;
+	}
+	
 	public Hospital getHospital() {
 		return hospital;
 	}
 	public void setHospital(Hospital hospital) {
 		this.hospital = hospital;
 	}
-	public int getId() {
-		return id;
+	
+	public int getpid() {
+		return pid;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setpid(int pid) {
+		this.pid = pid;
 	}
 	public String getP_name() {
 		return p_name;
@@ -54,20 +65,9 @@ public class Patient {
 	public void setP_address(String p_address) {
 		this.p_address = p_address;
 	}
-	public Patient(int id, String p_name, String p_diagnosis, String p_address) {
-		super();
-		this.id = id;
-		this.p_name = p_name;
-		this.p_diagnosis = p_diagnosis;
-		this.p_address = p_address;
-	}
-	public Patient() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 	@Override
 	public String toString() {
-		return "Patient [id=" + id + ", p_name=" + p_name + ", p_diagnosis=" + p_diagnosis + ", p_address=" + p_address
+		return "Patient [pid=" + pid + ", p_name=" + p_name + ", p_diagnosis=" + p_diagnosis + ", p_address=" + p_address
 				+ ", hospital=" + hospital + "]";
 	}
 

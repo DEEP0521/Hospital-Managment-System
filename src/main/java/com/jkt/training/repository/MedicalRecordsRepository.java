@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.jkt.training.model.MedicalRecords;
 
 public interface MedicalRecordsRepository extends JpaRepository<MedicalRecords, Integer> {
-	public List<MedicalRecords> findByPatientId(int p_id);
+	public List<MedicalRecords> findByPatientPid(int p_id);
 }

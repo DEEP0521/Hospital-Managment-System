@@ -60,6 +60,10 @@ public class PatientService {
 	
 	//Patient records addition with exception handling
 	public boolean addPatient(Patient patient) {
+		
+		int check=patient.getpid();
+		if(repository.existsById(check)==false)
+		{
 		String pid=String.valueOf(patient.getpid());
 		 if((!patient.getP_name().equals(null))&&(!patient.getP_address().equals(null))&&(!patient
 				 .getP_diagnosis().equals(null))&&(patient.getpid()!=-1)&&(!pid.equals(null)))
@@ -69,8 +73,12 @@ public class PatientService {
 		 }
 		 else
 			 return false;
+		}
+		else
+			 return false;
 	}
 	
+	//Patient records deletion with exception handling
 	public void deletePatient(int p_id) {
 		Patient patient=repository.getOne(p_id);
 		System.out.println(p_id+"\t"+patient.getpid());
@@ -82,25 +90,35 @@ public class PatientService {
 			throw new RecordNotFoundException();
 	}
 	
-
+	//Patient records update with exception handling
 	public void updatePatient(Patient patient,int p_id) {
-		String pid=String.valueOf(patient.getpid());
-		 if((!patient.getP_name().equals(null))||(!patient.getP_address().equals(null))||(!patient
-				 .getP_diagnosis().equals(null))||(patient.getpid()!=0)||(!pid.equals(null)))
-		 {
+		
+		if(repository.existsById(p_id)==true) 
+		{
+			String pid=String.valueOf(patient.getpid());
+			if((!patient.getP_name().equals(null))||(!patient.getP_address()
+					.equals(null))||(!patient.getP_diagnosis().equals(null))
+					||(patient.getpid()!=0)||(!pid.equals(null)))
 			 repository.save(patient);
+			else
+				 throw new RecordNotFoundException();
 		}
-		 else			 throw new RecordNotFoundException();
+		else
+			 throw new RecordNotFoundException();
 	}
 	
-	//mapping
+	//Hospital-Patient records addition with exception handling
 	public void updateH_Patient(Patient patient,int h_id,int p_id) {
-		String pid=String.valueOf(patient.getpid());
-		 if((!patient.getP_name().equals(null))||(!patient.getP_address().equals(null))||(!patient
+		
+		if(repository.existsById(p_id)==true) 
+		{
+			String pid=String.valueOf(patient.getpid());
+			if((!patient.getP_name().equals(null))||(!patient.getP_address().equals(null))||(!patient
 				 .getP_diagnosis().equals(null))||(patient.getpid()!=0)||(!pid.equals(null)))
-		 {
-			 repository.save(patient);
-		 }
+				repository.save(patient);
+			else
+				 throw new RecordNotFoundException();
+		}
 		 else			 throw new RecordNotFoundException();
 	}
 	

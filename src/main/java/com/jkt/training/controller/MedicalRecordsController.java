@@ -36,12 +36,13 @@ public class MedicalRecordsController {
 		return service.getAllp_Records(p_id);
 	}
 	
+	
 	@GetMapping("/records/{r_id}")
 	public Optional<MedicalRecords> getrecordById(@PathVariable int r_id) {
 		return service.getRecordById(r_id);
 	}
 	
-	//mapping with medical record
+	//mapping with patient and record
 	@GetMapping("/patients/{p_id}/records/{r_id}")
 	public Optional<MedicalRecords> getp_recordById(@PathVariable int r_id) {
 		return service.getp_RecordById(r_id);

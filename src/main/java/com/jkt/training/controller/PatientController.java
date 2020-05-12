@@ -52,6 +52,7 @@ public class PatientController {
 	@PostMapping(path = "/patients",consumes = "application/json")
 	public String addPatient(@RequestBody Patient patient) {
 		boolean b=service.addPatient(patient);
+		System.out.println("Patient"+b);
 		if(b==true)
 			return "Patient Record Added!";
 		else
@@ -63,6 +64,7 @@ public class PatientController {
 	public String addp_patient(@PathVariable int h_id,@RequestBody Patient patient) {
 		patient.setHospital(new Hospital(h_id,"",""));
 		boolean b=service.addPatient(patient);
+		System.out.println("Hospital Patient"+b);
 		if(b==true)
 			return "Patient Record Added!";
 		else

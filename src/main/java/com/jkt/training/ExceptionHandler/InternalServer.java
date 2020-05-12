@@ -11,12 +11,14 @@ public class InternalServer {
 	public InternalServer() {
 		super();
 	}
+	
 
 	public InternalServer(String message, String description) {
 		super();
 		this.message = message;
 		this.description = description;
 	}
+
 
 	public String getMessage() {
 		return message;
@@ -34,5 +36,5 @@ public class InternalServer {
 		this.description = description;
 	}
 	
-	
+
 }

@@ -31,7 +31,7 @@ public class PatientController {
 	
 	//mapping with patient with exception handling
 	@GetMapping("/hospitals/{h_id}/patients")
-	public List<Patient> getAllH_Patients(@PathVariable int h_id){
+	public List<Patient> getAllPatients(@PathVariable int h_id){
 		
 		return service.getAllH_Patients(h_id);
 	}
@@ -42,13 +42,13 @@ public class PatientController {
 		return service.getPatientById(p_id);
 	}
 	
-	//mapping with patient
+	//mapping with patient with exception handling
 	@GetMapping("/hospitals/{h_id}/patients/{p_id}")
 	public Optional<Patient> getH_PatientById(@PathVariable int p_id) {
-		return service.getH_PatientById(p_id);
+		return service.getPatientById(p_id);
 	}
 	
-	
+	//Patient records Addition with exception handling
 	@PostMapping(path = "/patients",consumes = "application/json")
 	public String addPatient(@RequestBody Patient patient) {
 		boolean b=service.addPatient(patient);
@@ -58,13 +58,13 @@ public class PatientController {
 			return "Unsucessful record addition!";
 	}
 	
-	//mapping with patient
+	//mapping with patient with exception handling
 	@PostMapping(path = "/hospitals/{h_id}/patients",consumes = "application/json")
 	public String addp_patient(@PathVariable int h_id,@RequestBody Patient patient) {
 		patient.setHospital(new Hospital(h_id,"",""));
-		boolean b=service.addH_Patient(patient);
+		boolean b=service.addPatient(patient);
 		if(b==true)
-			return "Patient Record Added";
+			return "Patient Record Added!";
 		else
 			return "Unsucessful record addition!";
 	}
@@ -73,20 +73,18 @@ public class PatientController {
 	@PutMapping(path = "/patients/{p_id}",consumes = "application/json")
 	public String updatePatient(@RequestBody Patient patient,@PathVariable int p_id) {
 		service.updatePatient(patient, p_id);
-		return "updated";
+		return "Updated";
 	}
 	
 	//mapping with patient
 	@PutMapping(path = "/hospitals/{h_id}/patients/{p_id}",consumes = "application/json")
-	public String updatep_patient(@RequestBody Patient patient,@PathVariable int p_id,@PathVariable int h_id) {
+	public String updatep_patient(@RequestBody Patient patient,@PathVariable int h_id,@PathVariable int p_id) {
 		patient.setHospital(new Hospital(h_id,"",""));
-		boolean b=service.updateH_Patient(patient);
-		return "updated p_patient";
+		service.updateH_Patient(patient,h_id,p_id);
+		return "Patient Record Updated!";
 	}
 	
-	//mapping with medical records
-	
-	
+	//Patient Records deletion with exception
 	@DeleteMapping("/patients/{p_id}")
 	public String deletePatient(@PathVariable int p_id) {
 		service.deletePatient(p_id);
@@ -96,7 +94,7 @@ public class PatientController {
 	//mapping with patient
 	@DeleteMapping("/hospitals/{h_id}/patients/{p_id}")
 	public String deletep_patient(@PathVariable int p_id) {
-		service.deleteH_Patient(p_id);
+		service.deletePatient(p_id);
 		return "deleted";
 	}
 	

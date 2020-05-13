@@ -2,6 +2,7 @@ package com.jkt.training.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+//import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 //import javax.persistence.OneToMany;
 
@@ -9,7 +10,7 @@ import javax.persistence.ManyToOne;
 public class Doctor {
 
 	@Id
-    private int id;
+    private int d_id;
 	private String dname;
 	private String qualification;
 	private int salary;
@@ -19,9 +20,9 @@ public class Doctor {
 	
 	
 	
-	public Doctor(int id, String dname, String qualification, int salary, int hosp_id) {
+	public Doctor(int d_id, String dname, String qualification, int salary, int hosp_id) {
 		super();
-		this.id = id;
+		this.d_id = d_id;
 		this.dname = dname;
 		this.qualification = qualification;
 		this.salary = salary;
@@ -41,20 +42,20 @@ public class Doctor {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Doctor(int id, String dname, String qualification, int salary) {
+	public Doctor(int d_id, String dname, String qualification, int salary) {
 		super();
-		this.id = id;
+		this.d_id = d_id;
 		this.dname = dname;
 		this.qualification = qualification;
 		this.salary = salary;
 	}
 
-	public int getId() {
-		return id;
+	public int getD_id() {
+		return d_id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setD_id(int d_id) {
+		this.d_id = d_id;
 	}
 
 	public String getDname() {
@@ -83,7 +84,10 @@ public class Doctor {
 
 	@Override
 	public String toString() {
-		return "Doctor [id=" + id + ", dname=" + dname + ", qualification=" + qualification + ", salary=" + salary
+		return "Doctor [d_id=" + d_id + ", dname=" + dname + ", qualification=" + qualification + ", salary=" + salary
 				+ "]";
 	}
+	
+
+	
 }

@@ -10,8 +10,11 @@ import java.util.stream.Stream;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import com.jkt.training.ExceptionHandler.RecordNotFoundException;
+import com.jkt.training.advice.ServiceException;
 import com.jkt.training.model.Doctor;
 import com.jkt.training.repository.DoctorRepository;
 
@@ -28,10 +31,10 @@ public class DoctorService {
 	}
 	
 	//doctor-hospital mapping
-	public List<Doctor> getAllDoctorsRec(int hosp_id)
+	public List<Doctor> getAllDoctorsRec(int Id)
 	{
 		List<Doctor> doctor=new ArrayList<>();
-		doctorrepo.findByHospitalId(hosp_id).forEach(doctor::add);
+		doctorrepo.findByHospitalId(Id).forEach(doctor::add);
 		return doctor;
 	}
 	
@@ -41,55 +44,58 @@ public class DoctorService {
 		return doctorrepo.findById(d_id);
 	}
 	
-	
-	
-	
 	public List<Doctor> getDoctors()
 	{
 		return doctorrepo.findAll();
 	}
 	
-	public Optional<Doctor> getdoctor(int d_id)
+	public Optional<Doctor> getdoctor(int d_id) throws ServiceException
 	{
-		return doctorrepo.findById(d_id);
+		
+		Optional<Doctor> doctor= doctorrepo.findById(d_id);
+		if(!doctor.isPresent())
+		{
+			throw new ServiceException("Doctor not found: " +d_id, HttpStatus.BAD_REQUEST.value());
+		}
+		else
+			return doctor;
 		
 	}
 	
-	public void addDoctor(Doctor doctor) {
-		 doctorrepo.save(doctor);
+	public void addDoctor(Doctor doctor) throws ServiceException{
+		
+		int check=doctor.getD_id();
+		if(doctorrepo.existsById(check)==false)
+		{
+			if(doctor.getD_id()==0||doctor.getDname()==null||doctor.getDname().isEmpty()||doctor.getQualification()==null||doctor.getSalary()==0)
+				throw new ServiceException("Fields should not be empty or null", HttpStatus.BAD_REQUEST.value());
+			else
+				doctorrepo.save(doctor);
+		}
+		else
+			throw new org.hibernate.service.spi.ServiceException("Doctor Already Exists!");
 	}
 	
-	
-	//mapping
-	public void addH_Record(Doctor doctor)
-	{
-		doctorrepo.save(doctor);
-	}
-
 	public void updateDoctor(Doctor doctor,int d_id)
 	{
-		
-		doctorrepo.save(doctor);
-	}
-	
-	
-	//mapping
-	public void updateH_Record(Doctor doctor)
-	{
-		doctorrepo.save(doctor);
-	}
-	
+		if(doctorrepo.existsById(d_id))
+		{
+			doctorrepo.save(doctor);
+		}
+		else
+			throw new RecordNotFoundException();
+	}	
 	
 	public void deleteDoctor(int d_id)
 	{
-	Doctor	doctor=doctorrepo.getOne(d_id);
-		doctorrepo.delete(doctor);
+		if(doctorrepo.existsById(d_id))
+		{
+			Doctor doctor=doctorrepo.getOne(d_id);
+			doctorrepo.delete(doctor);
+		}
+		else
+			throw new RecordNotFoundException();
+		
 	}
 	
-	//mapping
-	public void deleteH_Record(int d_id)
-	{
-		Doctor doctor=doctorrepo.getOne(d_id);
-		doctorrepo.delete(doctor);
-	}
 }

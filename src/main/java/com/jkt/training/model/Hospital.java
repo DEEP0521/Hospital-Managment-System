@@ -1,49 +1,58 @@
 package com.jkt.training.model;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.persistence.Entity;
 
 @Entity
 public class Hospital {
- 
  @Id
  private int id;
- private String h_branch_name;
- private String h_city;
-public int getId() {
+ private String HBranchName;
+ private String HCity;
+ 
+ 
+ 
+ public Hospital() {
+		super();
+	}
+ 
+ public Hospital(int id, String hBranchName, String hCity) {
+		super();
+		this.id = id;
+		HBranchName = hBranchName;
+		HCity = hCity;
+ }
+
+ public int getId() {
 	return id;
 }
-public void setId(int id) {
+
+ public void setId(int id) {
 	this.id = id;
 }
-public String getH_branch_name() {
-	return h_branch_name;
+
+ public String getHBranchName() {
+	return HBranchName;
 }
-public void setH_branch_name(String h_branch_name) {
-	this.h_branch_name = h_branch_name;
+
+ public void setHBranchName(String hBranchName) {
+	HBranchName = hBranchName;
 }
-public String getH_city() {
-	return h_city;
+
+ public String getHCity() {
+	return HCity;
 }
-public void setH_city(String h_city) {
-	this.h_city = h_city;
+
+ public void setHCity(String hCity) {
+	HCity = hCity;
 }
-public Hospital(int id, String h_branch_name, String h_city) {
-	super();
-	this.id = id;
-	this.h_branch_name = h_branch_name;
-	this.h_city = h_city;
-}
-public Hospital() {
-	super();
-	// TODO Auto-generated constructor stub
-}
+
+
 @Override
 public String toString() {
-	return "Hospital [id=" + id + ", h_branch_name=" + h_branch_name + ", h_city=" + h_city + "]";
+	return "Hospital [id=" + id + ", HBranchName=" + HBranchName + ", HCity=" + HCity + "]";
+}	
+	
 }
- 
-}
- 
+
  

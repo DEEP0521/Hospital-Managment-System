@@ -1,6 +1,8 @@
 package com.jkt.training.controller;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
+
+//import com.jkt.training.model.Doctor;
 import com.jkt.training.model.Hospital;
 import com.jkt.training.service.HospitalService;
 import java.util.List;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
 @RestController
 public class HospitalController {
   @Autowired
@@ -21,6 +24,7 @@ public class HospitalController {
 	{
 		return hrService.getHospitals();
 	}
+	
 	
 	@GetMapping("/hospitals/{hosp_id}")
 	public Optional<Hospital> getById(@PathVariable int hosp_id)
@@ -36,7 +40,7 @@ public class HospitalController {
 	}
 	
 	@DeleteMapping("/hospitals/{hosp_id}")
-	public String deleteHospital(@RequestBody int hosp_id)
+	public String deleteHospital(@PathVariable int hosp_id)
 	{
 		hrService.deleteHospital(hosp_id);
 		return "The hospital with id "+ hosp_id +"is deleted.";
@@ -46,5 +50,5 @@ public class HospitalController {
 	public String updateHospital(@RequestBody Hospital hospital,@PathVariable int hosp_id) {
 		hrService.updateHospital(hospital,hosp_id);
 		return "Hospital is updated now.";
-	}
+	}	
 }

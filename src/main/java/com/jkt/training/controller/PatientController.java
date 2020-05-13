@@ -22,6 +22,7 @@ public class PatientController {
 	@Autowired
 	private PatientService service;
 	
+	
 	//Patient records with exception handling
 	@GetMapping("/patients")
 	public List<Patient> getAllpatients(){

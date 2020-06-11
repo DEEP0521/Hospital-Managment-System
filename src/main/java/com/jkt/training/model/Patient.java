@@ -1,9 +1,13 @@
 package com.jkt.training.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 //import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Patient {
@@ -15,7 +19,15 @@ public class Patient {
 	@ManyToOne
 	private Hospital hospital;
 	
+	@OneToMany(mappedBy = "patient" ,cascade = CascadeType.ALL)
+	private List<MedicalRecords> medicalRecords;
 	
+	public List<MedicalRecords> getMedicalRecords() {
+		return medicalRecords;
+	}
+	public void setMedicalRecords(List<MedicalRecords> medicalRecords) {
+		this.medicalRecords = medicalRecords;
+	}
 	public Patient(int id, String p_name, String p_diagnosis, String p_address, int h_id) {
 		super();
 		this.id = id;

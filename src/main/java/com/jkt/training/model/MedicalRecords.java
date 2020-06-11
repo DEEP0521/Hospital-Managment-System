@@ -2,6 +2,7 @@ package com.jkt.training.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -13,6 +14,7 @@ public class MedicalRecords {
 	private String date_of_examination;
 	
 	@ManyToOne
+	@JoinColumn(name = "pat_id")
 	private Patient patient;
 	
 	public MedicalRecords() {

@@ -22,4 +22,4 @@ jobs:
 
       env:
         GITHUB_TOKEN: ${{ github.token }}
-        run: mvn deploy -Dregistry=https://maven.pkg.github.com/Sumayya-maven -Dtoken=GITHUB_TOKEN
+        run: mvn deploy -Dregistry=https://maven.pkg.github.com/DEEP0521 -Dtoken=GH_TOKEN
